@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+echo "== list bucket"
+
+# exit immediately if any command returns a non-zero status
+set -e
+
+aws s3api list-buckets | jq -r '.Buckets | sort_by(.CreationDate) | reverse | .[] | .Name'
